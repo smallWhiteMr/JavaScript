@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>004js高级_4</title>
+</head>
+<body>
+    <script>
+        /* 
+            一、高阶技巧
+                1 浅拷贝
+                    对象的浅拷贝：Obejct.assign(), {...obj}
+                    数组的浅拷贝：Object.prototype.concat(), [...arr]
+
+                2 递归
+
+                3 深拷贝
+                    递归实现
+                    Lodash库
+                    JSON
+
+                4 异常处理
+                    throw
+                        和new Error()配合使用，手动抛出详细的错误提示。
+                        throw错误会终止程序执行。
+                    try...catch...finally
+                    debugger
+
+                5 this指向
+                    普通函数this指向：谁调用的，this指向谁。
+                    箭头函数this指向：本身没有this，它的this取决于作用域链内离它最近的且存在的那个this。
+
+                6 改变this指向
+                    call(thisArg, arg1, arg2, ..., argN)
+                    apply(thisArg, argsArray)
+                    bind(thisArg, arg1, arg2, ..., argN)
+
+                7 防抖节流
+                    防抖：单位时间内，频繁触发事件，只执行最后一次
+                    节流：单位时间内，频繁触发事件，只执行一次
+
+                    mousemove事件：
+                        鼠标在box区域内mousemove，count自动+1
+                            不做处理时，随着鼠标不停的mousemove，count会不停的自动+1
+                            防抖处理后，在规定的时间内，无论鼠标mousemove多少次，只会执行那最后一次的mousemove
+                            节流处理后，在规定的时间内，无论鼠标mousemove多少次，只会等第一次mousemove执行结束，再去响应新的mousemove事件
+        */
+
+        // 2 递归用setTimeout实现setInterval
+        // function getTime() {
+        //     console.log(new Date().toLocaleString())
+        //     setTimeout(getTime, 1000);
+        // }
+        // getTime()
+        
+        // 3 手写深拷贝
+        let source = {
+            name: 'lqj',
+            age: 18,
+            hobby: [1,2,3],
+            obj: {
+                a: 1
+            }
+        }
+        let target = {}
+        function deepClone(target, source) {
+            for(let k in source) {
+                if(source[k] instanceof Array) {
+                    target[k] = []
+                    deepClone(target[k], source[k])
+                }else if(source[k] instanceof Object) {
+                    target[k] = {}
+                    deepClone(target[k], source[k])
+                }else {
+                    target[k] = source[k]
+                }
+            }
+        }
+        deepClone(target, source)
+        target.obj.a = 111
+        console.log('target==>', target)
+        console.log('source==>', source)
+
+
+        function greet() {
+        console.log(this.animal, "的睡眠时间一般在", this.sleepDuration, "之间");
+        }
+
+        const obj = {
+        animal: "猫",
+        sleepDuration: "12 到 16 小时",
+        };
+
+        greet(obj); 
+    </script>
+</body>
+</html>

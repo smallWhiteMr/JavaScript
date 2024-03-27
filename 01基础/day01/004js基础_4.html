@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>004js基础_4</title>
+</head>
+<body>
+    <script>
+        /* 
+            一、函数
+                1 什么是函数？
+                    具有特定功能的代码块。实现代码复用。
+
+                2 定义函数
+                    声明式 function fn() {}
+                    调用 fn()
+
+                    函数表达式 let foo = function() {}
+                    调用 foo()
+
+                    注意：声明式函数的定义和调用不分顺序；而函数表达式必须先定义，后调用。
+                        本质就是声明式函数整体会被变量提升。而函数表达式仅仅是将变量名进行提升，作为值的函数没有被提升。
+
+                3 参数
+                    function fn(a = 0, b = 0) {} // a和b是形参。这里给形参a和b都设置了默认值。
+                    fn(1,2) // 1和2是实参
+                    实参数量比形参多，多出来的实参会被直接忽略。
+                    形参数量比实参多，未传值的形参默认为undefined。
+
+                4 返回值
+                    函数通过return实现返回值。
+                    定义函数时不写return 或者只写了return，此时返回值为undefined。
+                    return xxx // 此时返回值就是return后面的xxx。
+                    当函数执行到return后，函数就结束了，即使return下面还有代码，也不会被执行。因此return也用于终止函数。
+
+                5 作用域
+                    全局作用域
+                    局部作用域(函数作用域)
+
+                6 变量的访问原则
+                    就近原则：依照作用域链逐层访问。局部作用域内有的，就优先使用。
+
+                7 函数分类
+                    具名函数 function fn() {}
+                    匿名函数 function() {}
+
+                8 IIFE立即执行函数
+                    方式一 (function() {})();
+                    方式二 (function() {}());
+                    IIFE函数末尾必须加分号。
+
+                9 逻辑中断
+                    function sum(a, b) {
+                        a = a || 0
+                        b = b || 0
+                        return a + b
+                    }
+                    sum(1, 2)
+
+                    aaa && bbb 一旦aaa为假，bbb不会被执行
+                    aaa || bbb 一旦aaa为真，bbb不会被执行
+                    运算后的值是最后被执行的表达式。
+        */
+        (function() { console.log(1) })();
+        (function(a, b) { console.log(a, b) })(1, 11);
+        (function() { console.log(2) })();
+        (function() { console.log(22) }());
+
+        function sum(a, b) {
+            a = a || 0
+            b = b || 0
+            return a + b
+        }
+        console.log(sum(1, 2))
+    </script>
+</body>
+</html>

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>005js基础_5</title>
+</head>
+<body>
+    <script>
+        /* 
+            一、对象
+                1 什么是对象？
+                    对象是一种无序的数据集合。
+                
+                2 对象内有属性和方法
+
+                3 对象的增删改查
+
+                4 遍历对象
+                    for...in
+
+                5 内置对象
+                    Math
+
+                6 值类型和引用类型
+                    值类型：变量中存储的是值本身
+                    引用数据类型：变量中存储的是地址，该地址信息指向真正存放数据的内存
+        */
+       let obj = {
+        name: 'lqj',
+        age: 18,
+        gender: true
+       }
+       for(let k in obj) {
+        console.log(k, obj[k])
+       }
+    </script>
+</body>
+</html>

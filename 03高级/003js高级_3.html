@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>003js高级_3</title>
+</head>
+<body>
+    <script>
+        /* 
+        一、深入面向对象
+            1 编程思想
+                面向过程
+                面向对象
+
+            2 原型
+                用构造函数new对象时，存在浪费内存的问题。
+                为了避免内存的浪费，可以将所有实例对象都会用到的方法或者属性放到构造函数的原型对象身上。
+                构造函数和构造函数原型上的方法，这两者中的this都是指向new出来的实例对象。
+
+            3 constructor属性
+                constructor是构造函数的原型对象中的一个属性，它指向构造函数
+
+            4 原型继承
+            
+            5 原型链
+
+            6 instanceof运算符
+        */
+
+        function Fn() {
+
+        }
+        let obj = new Fn()
+        console.log(Fn.prototype.constructor === Fn) // true
+        console.log(Fn.prototype)
+
+        // 覆盖prototype
+        /* Fn.prototype = {
+            run() {
+                console.log('跑步')
+            },
+            eat() {
+                console.log('吃饭')
+            }
+        } */
+
+        // 为了实现给prototype内批量增加属性和方法，在覆盖prototype时，通过constructor属性重新指向构造函数
+        Fn.prototype = {
+            constructor: Fn,
+            run() {
+                console.log('跑步')
+            },
+            eat() {
+                console.log('吃饭')
+            }
+        }
+        console.log(Fn.prototype.constructor === Fn) // 依旧为true
+        console.log(Fn.prototype)
+
+        // 4 原型继承
+        let Person = {
+            ears: 2,
+            head: 1
+        }
+        function Man() {
+
+        }
+        Man.prototype = Person
+        Man.prototype.constructor = Man
+        let m = new Man()
+        console.log(m)
+
+        function Woman() {
+
+        }
+        Woman.prototype = Person
+        Woman.prototype.constructor = Woman
+        let w = new Woman()
+        console.log(w)
+    </script>
+</body>
+</html>

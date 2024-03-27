@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>002js高级_2</title>
+</head>
+<body>
+    <script>
+        /* 
+        一、深入对象
+            1 创建对象的三种方式
+                字面量方式 let obj = {}
+                new Object方式 let obj = new Object({})
+                自定义构造函数
+
+            2 构造函数
+                new构造函数时，具体做了什么？
+                    创建一个新对象obj
+                    将obj的隐式原型指向构造函数的显示原型
+                    将构造函数的this指向新对象obj
+                    执行构造函数内部代码
+                    将新对象返回
+
+            3 实例对象
+                通过new构造函数得到的对象，被称为实例对象
+
+            4 实例成员
+                实例成员就是实例对象中的方法和属性，可分为实例方法和实例属性
+
+            5 静态成员
+                静态成员就是构造函数中的方法和属性，可分为静态方法和静态属性
+                静态成员只能由构造函数自身进行访问
+
+            6 内置的构造函数
+                包装类型
+                    String
+                    Number
+                    Boolean
+
+                引用类型
+                    Object
+                    Array
+                    RegExp
+                    Date
+
+            7 Object常用的三个静态方法
+                Object.keys()
+                Object.values()
+                Object.assign(target, source) // 将源对象身上可枚举的自由属性复制到目标对象身上。返回值是合并后的源对象。
+
+            8 Array常用的实例方法
+                forEach() // 无返回值，不改变原数组
+                map() // 返回新数组，不改变原数组
+                filter() // 返回一个由满足条件的元素组成的新数组，不改变原数组
+                reduce() // 返回累加后的结果，不改变原数组
+                from() // 将伪数组转换为真数组
+
+            9 String常用的实例方法
+                split()
+        */
+    </script>
+</body>
+</html>

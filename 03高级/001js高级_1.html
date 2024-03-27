@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>001js高级_1</title>
+</head>
+<body>
+    <script>
+        /* 
+        一、作用域
+            1 局部作用域
+                函数作用域
+                    函数作用域内的变量，外部无法访问
+                    函数的形参，也算是函数作用域内的变量
+                    不同的函数作用域，其内部声明的变量无法相互访问
+                    函数执行完毕，其内部的变量都会被清空
+
+                块级作用域
+                    let const 声明的变量都有块级作用域。var没有。
+
+            2 全局作用域
+                script标签内部，js文件的最外层都可以视为全局作用域
+                向window对象身上添加的属性，默认也是全局的
+                函数中未使用任何关键字声明的变量，默认也是全局的
+
+            3 作用域链
+                作用域链本质上就是变量的查找机制。查找时遵循就近原则。
+
+            4 JS垃圾回收机制(GC)
+                内存的生命周期：内存分配，内存使用，内存释放/回收
+
+                给全局变量分配的内存在页面关闭时被释放
+                给局部变量分配的内存会被自动释放
+
+                内存泄露：程序无法正确释放不再使用的内存空间
+                内存溢出：程序正常运行所需要的内存超出系统可提供的内存限制
+
+                内存泄漏最终会引发内存溢出
+
+                GC两种常用的方法
+                    引用计数
+                    标记清除(主流)
+
+                    标记清除法解决了引用计数法中存在内存泄漏问题
+            5 闭包
+                一种引用关系。内部函数访问外部函数的变量
+                闭包 = 内部函数 + 外部函数的变量
+
+                闭包常用于封闭数据实现数据私有，使得外部可以访函数内部的变量
+
+                闭包过多可能会导致内存泄漏
+
+            6 变量提升
+                实际开发中，都会使用let或者const定义变量，不再用var定义变量了。这从根源上避免了变量提升的问题。
+
+                声明式函数会被整体提升。因此声明式函数可以先调用，后定义。而函数表达式形式只是提升了函数名，并未提升赋值，因此不允许先调用后定义。
+
+            7 函数参数
+                形参
+                形参默认值
+                实参
+                动态参数 arguments
+                    函数不确定会收到多少个实参。
+                    动态参数是函数特有，它会收集所有传递进来的实参。arguments是伪数组。
+                剩余参数 ...params
+                    用于函数中。当实参数量大于形参数量时，此时可以用剩余参数接收多余的实参。剩余参数是真数组。
+                展开运算符 ...
+                    用于数组中。多用于求数组的最值 或 合并数组
+            
+            8 箭头函数
+                () => ({}) // 箭头函数返回一个数组时，需要用小括号包裹起来
+                箭头函数没有动态参数arguments，但可以正常使用 剩余运算符
+                箭头函数本身没有this。在箭头函数中访问this时，该this会沿着作用域去找最近的且有this的那一层
+
+            9 解构赋值(为了更加快捷高效的给变量赋值)
+                数组解构赋值(还可以用于交换两个变量)
+                对象结构赋值
+
+            10 forEach()遍历数组
+        */
+        function fn() {
+            let count = 0
+            function foo() {
+                count++
+                console.log(`函数执行了${count}次`)
+            }
+            return foo
+        }
+        // 实现了外部函数res访问函数作用域内的变量count
+        let res = fn()
+        res()
+        res()
+
+        // 三点运算符==> 用于函数，是剩余运算符
+        function sum(i, j, ...params) {
+            console.log(i, j, params)
+        }
+        sum(1, 2, 3, 4, 5)
+
+        // 三点运算符==> 用于数组，是展开运算符
+        let arr = [1,2,3]
+        let arr2 = [4,5,6]
+        Math.max(...arr)
+        Math.min(...arr2)
+        console.log([...arr, ...arr2])
+
+        // 1 数组解构赋值
+        let newArr = [1,2,3,[4,5]]
+        let [a, b, c, [d, e]] = newArr
+        console.log(a,b,c,d,e)
+        let m = 1
+        let n = 2;
+        [n, m] = [m, n]
+        console.log(m, n)
+
+        // 2 对象解构赋值
+        let obj = {
+            name: 'lqj',
+            age: 18,
+            hobby: {
+                one: 'game'
+            }
+        }
+        let {name, age, hobby} = obj
+        let {name: username, age: userage, hobby: userhobby} = obj
+        console.log(name, age, hobby)
+        console.log(username, userage, userhobby)
+
+        let arr3 = [1,2,3,4,5]
+        arr3.forEach((value, index, arr) => {
+            console.log(value, index, arr)
+        })
+    </script>
+</body>
+</html>
